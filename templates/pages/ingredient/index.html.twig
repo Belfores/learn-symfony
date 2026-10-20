@@ -4,7 +4,8 @@
 
 {% block body %}
     {% include "/partials/_header.html.twig" %} 
-    <div class="container">
+    <div class="container"> 
+        <a href="{{path('app_ingredient_new')}}" class="btn btn-secondary mt-4">Ajouter un ingredient</a>
         {% if ingredients is not empty %}
             <h1>Mes Ingredients</h1> 
             <div class="count">
@@ -16,7 +17,10 @@
                     <th scope="col">#Numero</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prix</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Date</th> 
+                    <th scope="col">Edit</th> 
+                    <th scope="col">delete</th> 
+
                     </tr>
                 </thead>
                 <tbody>
@@ -25,7 +29,13 @@
                         <th scope="row">{{ ingredient.id }}</th>
                         <td>{{ ingredient.name }}</td>
                         <td>{{ ingredient.prix }}$</td>
-                        <td>{{ ingredient.createdAt|date('d/m/Y') }}</td>
+                        <td>{{ ingredient.createdAt|date('d/m/Y') }}</td> 
+                        <td>
+                            <a href="{{path('app_ingredient_edit', {id : ingredient.id})}}" class="btn btn-info">edit</a>
+                        </td>
+                        <td>
+                            <a href="{{path('app_ingredient_delete', {id : ingredient.id})}}" class="btn btn-danger">delete</a>
+                        </td>
                         </tr>
                     {% endfor %}
 
